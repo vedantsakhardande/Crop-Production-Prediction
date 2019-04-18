@@ -8,10 +8,10 @@ from keras.models import load_model
 
 # return training data
 def get_train():
-    data = pd.read_csv("dataset.csv",usecols = ['Avg Month Temp'])
+    data = pd.read_csv("train.csv",usecols = ['Avg Month Temp'])
     df=data.values
     X=df
-    data = pd.read_csv("dataset.csv",usecols = ['Ratio'])
+    data = pd.read_csv("train.csv",usecols = ['Ratio'])
     df=data.values
     y=df
     # print("Y NEW SHAPE :",y.shape)
@@ -25,7 +25,8 @@ def get_train():
 # define model
 model = Sequential()
 model.add(LSTM(10, input_shape=(1,1)))
-model.add(Dense(1, activation='linear'))
+# model.add(Dense(1, activation='linear'))
+model.add(Dense(1, activation='relu'))
 # compile model
 model.compile(loss='mse', optimizer='adam')
 # fit model
